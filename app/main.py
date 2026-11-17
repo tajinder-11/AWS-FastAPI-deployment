@@ -3,6 +3,7 @@ from fastapi import FastAPI
 
 from app.db.database import client
 from app.api.routes.auth import router as auth_router
+from app.api.routes.users import router as users_router
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -51,4 +52,10 @@ app.include_router(
     auth_router,
     prefix="/api/v1/auth",
     tags=["Authentication"],
+)
+
+app.include_router(
+    users_router,
+    prefix="/api/v1/users",
+    tags=["Users"],
 )
